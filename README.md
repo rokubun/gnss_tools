@@ -20,7 +20,7 @@ After pulling the image from the registry you can, for instance:
 - Use `teqc` to process a Rinex v2 file to obtain only the phase and code of
   the L1 frequency. The file is located in the current directory
 
-    docker run -ti -v ${PWD}:/tmp rokubun/gnss_tools teqc -O.obs L1C1 /tmp/inbd1570.18o
+    `docker run -ti -v ${PWD}:/tmp rokubun/gnss_tools teqc -O.obs L1C1 /tmp/inbd1570.18o`
 
   This commands `run`s a command of the `gnss_tools` image. In this case the 
   command is `teqc` (`teqc -O.obs L1C1 /tmp/inbd1570.18o`). The command
@@ -33,14 +33,16 @@ After pulling the image from the registry you can, for instance:
   launch the container mounting a folder in the host machine (for instance
   the current working directory, i.e. `${PWD]`):
 
-    # Launch the container (interactive session with the bash prompt, ready
-    # to accept commands within the container)
-    docker run -ti -v ${PWD}:/tmp rokubun/gnss_tools
+  Launch the container (interactive session with the bash prompt, ready
+  to accept commands within the container)
+  
+    `docker run -ti -v ${PWD}:/tmp rokubun/gnss_tools`
 
-    # Within the container, start the str2str server to stream data from 
-    # an NTRIP caster to a file (we assume the mountpoint of the caster is
-    # using RTCM 3 format
-    str2str -in ntrip://<username>:<password>@<xx.xx.xx.xx>:<ppp>/<mount>#rtcm3 -out file:///tmp/test.rtcm3#rtcm3
+  Within the container, start the str2str server to stream data from 
+  an NTRIP caster to a file (we assume the mountpoint of the caster is
+  using RTCM 3 format
+  
+    `str2str -in ntrip://<username>:<password>@<xx.xx.xx.xx>:<ppp>/<mount>#rtcm3 -out file:///tmp/test.rtcm3#rtcm3`
 
   In this command `<username>` and `<password>` are your credentials to the caster.
   `<xx.xx.xx.xx>` is the caster IP address (or, alternatively, caster URL),

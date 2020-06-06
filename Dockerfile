@@ -27,12 +27,12 @@ RUN wget --no-check-certificate ${TEQC_URL} -O teqc.zip \
  && unzip teqc.zip 
 
 # hatanaka
-ARG HATANAKA_URL=http://terras.gsi.go.jp/ja/crx2rnx/RNXCMP_4.0.7_Linux_x86_64bit.tar.gz
+ARG HATANAKA_URL=http://terras.gsi.go.jp/ja/crx2rnx/RNXCMP_4.0.8_Linux_x86_64bit.tar.gz
 RUN wget ${HATANAKA_URL} -O /tmp/hatanaka.tgz \
  && tar xvfz /tmp/hatanaka.tgz
 
 # GFZRNX
-RUN wget http://semisys.gfz-potsdam.de/semisys/software/gfzrnx/1.11/gfzrnx_lx \
+RUN wget http://semisys.gfz-potsdam.de/semisys/software/gfzrnx/1.13/gfzrnx_lx \
  && chmod ugo+x gfzrnx_lx \
  && mv gfzrnx_lx /usr/local/bin/ \
  && (cd /usr/local/bin/; ln -s gfzrnx_lx gfzrnx)

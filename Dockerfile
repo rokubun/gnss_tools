@@ -15,11 +15,11 @@ ARG RTKLIB_URL=https://github.com/tomojitakasu/RTKLIB.git
 ARG RTKLIB_TAG=rtklib_2.4.3 
 RUN git clone --depth 1 --branch ${RTKLIB_TAG} ${RTKLIB_URL} \
     && (cd RTKLIB/lib/iers/gcc/; make) \
-    && (cd RTKLIB/app/convbin/gcc/; make; make install) \
-    && (cd RTKLIB/app/rnx2rtkp/gcc/; make; make install) \
-    && (cd RTKLIB/app/pos2kml/gcc/; make; make install) \
-    && (cd RTKLIB/app/str2str/gcc/; make; make install) \
-    && (cd RTKLIB/app/rtkrcv/gcc/; make; make install) 
+    && (cd RTKLIB/app/consapp/convbin/gcc/; make; make install) \
+    && (cd RTKLIB/app/consapp/rnx2rtkp/gcc/; make; make install) \
+    && (cd RTKLIB/app/consapp/pos2kml/gcc/; make; make install) \
+    && (cd RTKLIB/app/consapp/str2str/gcc/; make; make install) \
+    && (cd RTKLIB/app/consapp/rtkrcv/gcc/; make; make install) 
 
 # teqc
 ARG TEQC_URL=https://www.unavco.org/software/data-processing/teqc/development/teqc_CentOSLx86_64s.zip

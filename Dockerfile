@@ -1,4 +1,4 @@
-FROM debian:stable-slim as builder
+FROM debian:11-slim as builder
 
 
 ARG TEQC_URL=https://www.unavco.org/software/data-processing/teqc/development/teqc_CentOSLx86_64s.zip
@@ -45,7 +45,7 @@ RUN unzip teqc_CentOSLx86_64s.zip -d /usr/local/bin && rm -rf teqc_CentOSLx86_64
     rm -rf RTKLIB
     
 
-FROM debian:stable-slim 
+FROM debian:11-slim 
 
 RUN apt-get update && apt-get install -y csh && \
      rm -rf /var/lib/apt/lists/*

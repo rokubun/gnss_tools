@@ -45,7 +45,7 @@ RUN unzip teqc_CentOSLx86_64s.zip -d /usr/local/bin && rm -rf teqc_CentOSLx86_64
     rm -rf RTKLIB
     
 
-FROM debian:11-slim 
+FROM debian:11-slim as debian
 
 RUN apt-get update && apt-get install -y csh && \
      rm -rf /var/lib/apt/lists/*
@@ -53,3 +53,9 @@ RUN apt-get update && apt-get install -y csh && \
 COPY --from=builder /usr/local/bin/* /usr/local/bin/
 
 
+FROM python:3.7-slim-bullseye as python
+
+RUN apt-get update && apt-get install -y csh && \
+     rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /usr/local/bin/* /usr/local/bin/

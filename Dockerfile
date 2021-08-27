@@ -47,7 +47,7 @@ RUN unzip teqc_CentOSLx86_64s.zip -d /usr/local/bin && rm -rf teqc_CentOSLx86_64
 
 FROM debian:10-slim as debian
 
-RUN apt-get update && apt-get install -y csh && \
+RUN apt-get update && apt-get install -y csh gfortran && \
      rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /usr/local/bin/* /usr/local/bin/
@@ -55,7 +55,7 @@ COPY --from=builder /usr/local/bin/* /usr/local/bin/
 
 FROM python:3.7-slim-buster as python
 
-RUN apt-get update && apt-get install -y csh && \
+RUN apt-get update && apt-get install -y csh gfortran && \
      rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /usr/local/bin/* /usr/local/bin/

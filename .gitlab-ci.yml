@@ -1,0 +1,35 @@
+image: rokubun/ci-base
+variables:
+  REPOSITORY_URL: 387039469323.dkr.ecr.eu-central-1.amazonaws.com/gnss_tools
+
+services:
+- docker:18.09.2-dind
+
+stages:
+  - build
+  - trigger
+
+before_script:
+    - $(aws ecr get-login --no-include-email --region eu-central-1)
+    - GIT_REPOSITORY_URL=`echo ${CI_PROJECT_URL} | sed "s,://,://${CI_CORE_USER}:${CI_CORE_TOKEN}@,g" | awk '{print $0".git";}'`
+    - git config --global user.email "ci@rokubun.cat"
+    - git config --global user.name "Gitlab CI"
+    - git remote set-url origin ${GIT_REPOSITORY_URL}
+
+build:
+  stage: build
+  only:
+    - master
+  script:
+    - VERSION=`sh ./admin/get_version.bash . | cut -d"-" -f1`
+    - MAJOR_VERSION=`echo ${VERSION} | cut -d. -f1`
+    - docker build -t ${REPOSITORY_URL} .
+    - docker push ${REPOSITORY_URL} 
+    - docker tag ${REPOSITORY_URL} ${REPOSITORY_URL}:${VERSION} && docker push ${REPOSITORY_URL}:${VERSION}
+    - docker tag ${REPOSITORY_URL} ${REPOSITORY_URL}:${MAJOR_VERSION} && docker push ${REPOSITORY_URL}:${MAJOR_VERSION}
+ 
+rokubun-core:
+  stage: trigger
+  only:
+    - master
+  trigger: core/rokubun_core

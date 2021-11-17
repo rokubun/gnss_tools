@@ -21,7 +21,7 @@ build:
   only:
     - master
   script:
-    - VERSION=`sh ./admin/get_version.bash . | cut -d"-" -f1`
+    - VERSION=`get_version . | cut -d"-" -f1`
     - MAJOR_VERSION=`echo ${VERSION} | cut -d. -f1`
     - docker build -t ${REPOSITORY_URL} .
     - docker push ${REPOSITORY_URL} 

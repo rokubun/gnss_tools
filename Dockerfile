@@ -53,7 +53,7 @@ RUN apt-get update && apt-get install -y csh gfortran && \
 COPY --from=builder /usr/local/bin/* /usr/local/bin/
 
 
-FROM python:3.7-slim-buster as python
+FROM python:3.9-slim-buster as python
 
 RUN apt-get update && apt-get install -y csh gfortran && \
      rm -rf /var/lib/apt/lists/*

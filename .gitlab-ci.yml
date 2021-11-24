@@ -1,6 +1,6 @@
 image: rokubun/ci-base
 variables:
-  REPOSITORY_URL: 387039469323.dkr.ecr.eu-central-1.amazonaws.com/gnss_tools
+  REPOSITORY_URL: 387039469323.dkr.ecr.eu-central-1.amazonaws.com/gnss-tools
 
 services:
 - docker:18.09.2-dind
@@ -33,3 +33,5 @@ rokubun-core:
   only:
     - master
   trigger: core/rokubun_core
+  inherit:
+    variables: false

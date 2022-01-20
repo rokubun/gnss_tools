@@ -8,8 +8,11 @@ ARG RTKLIB_URL=https://github.com/tomojitakasu/RTKLIB.git
 ARG RTKLIB_TAG=rtklib_2.4.3
 ARG RTKLIB_SHA=c6e6c03143c5b397a9217fae2f6423ccf9c03fb7
 ARG RTKLIB_EXPLORER_URL=https://github.com/rtklibexplorer/RTKLIB.git
+
+# RTKLIB EXPLORER b34e
+ARG RTKLIB_EXPLORER_TAG=b34e
 ARG RTKLIB_EXPLORER_TAG=demo5
-ARG RTKLIB_EXPLORER_SHA=fc556677165a3be7b3886fba68f42dbec7fb363e
+ARG RTKLIB_EXPLORER_SHA=188d93f331e04138d33aec8ef00b118dd7b256d5 
 
 RUN apt-get update && apt-get install -y \
         bash \
